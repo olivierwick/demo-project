@@ -59,8 +59,17 @@ function setup() {
 	createCanvas(windowWidth, windowHeight)
 	background(0)
 	
-	sliderFill = createSlider(0, 255, 20, .1)
+	sliderFill = createSlider(0, 255, 128, .1)
 	sliderFill.position(width/2, 25)
+	sliderFill.input(()=> {
+		localStorage.setItem(sliderFill, sliderFill.value())
+	})
+
+	if(localStorage.hasOwnProperty(sliderFill)){
+		var storedValue = localStorage.getItem('sliderFill')
+		sliderFill.value(storedValue)
+	}
+	
 }
 
 function draw() {
